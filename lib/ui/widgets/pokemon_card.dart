@@ -14,8 +14,11 @@ Widget PokemonCard(Pokemon pokemon) {
         ClipRRect(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(6.0), topRight: Radius.circular(6.0)),
-            child: CachedNetworkImage(
-                imageUrl: pokemon.sprite!.frontDefault, height: 210, fit: BoxFit.fill)),
+            child: Hero(
+              tag: 'location-img-${pokemon.name}',
+              child: CachedNetworkImage(
+                  imageUrl: pokemon.sprite!.frontDefault, height: 210, fit: BoxFit.fill),
+            )),
         const SizedBox(
           height: 12.0,
         ),

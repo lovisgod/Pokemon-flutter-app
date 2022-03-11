@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/data/Pokemon_repository.dart';
 import 'package:pokemon/data/models/models.dart';
+import 'package:pokemon/ui/screens/pokemon_details.dart';
 import 'package:pokemon/ui/widgets/pokemon_card.dart';
 import 'package:provider/provider.dart';
 
@@ -16,13 +17,23 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
-          height: double.infinity,
-          child: _buildPokemonLoader(context),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 3,
+        title: Text(
+            'Pokemon App'
+        ),
+      ),
+      extendBodyBehindAppBar: false,
+      body: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            height: double.infinity,
+            child: _buildPokemonLoader(context),
+          ),
         ),
       ),
     );
@@ -77,19 +88,11 @@ class _MainScreenState extends State<MainScreen> {
     final pokemon = pokemons[index];
     return GestureDetector(
       onTap: () {
-        // Navigator.push(topLevelContext, MaterialPageRoute(
-        //   builder: (context) {
-        //     final detailRecipe = Recipe(
-        //         label: recipe.label,
-        //         image: recipe.image,
-        //         url: recipe.url,
-        //         calories: recipe.calories,
-        //         totalTime: recipe.totalTime,
-        //         totalWeight: recipe.totalWeight);
-        //     detailRecipe.ingredients = convertIngredients(recipe.ingredients);
-        //     return RecipeDetails(recipe: detailRecipe);
-        //   },
-        // ));
+        Navigator.push(topLevelContext, MaterialPageRoute(
+          builder: (context) {
+            return Details(pokemon: pokemon);
+          },
+        ));
       },
       child: PokemonCard(pokemon),
     );
