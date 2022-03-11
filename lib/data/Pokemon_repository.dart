@@ -49,7 +49,7 @@ class PokemonRepository {
     list.forEach((element) {
       List splitted  = element.url.split('/');
       final path  = splitted[splitted.length -2];
-      print('this is path $path');
+      print('this is path loaded $path');
       PokemonSecondFetchService service  = PokemonSecondFetchService.create();
       Future<Response<Pokemon>> result  = service.getSecondResult(path);
       result.then((value) => {
